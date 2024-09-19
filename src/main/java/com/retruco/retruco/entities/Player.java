@@ -39,8 +39,8 @@ public class Player {
 
     @Setter(AccessLevel.NONE)
     private Double balance;
-    private Integer victories;
-    private Integer defeats;
+    private Integer wins;
+    private Integer loses;
     private Integer streak;
     private Integer maxStreak;
 
@@ -63,8 +63,8 @@ public class Player {
         this.creationDate = LocalDate.now();
         this.friends = new ArrayList<>();
         this.balance = 0.0;
-        this.victories = 0;
-        this.defeats = 0;
+        this.wins = 0;
+        this.loses = 0;
         this.streak = 0;
         this.maxStreak = 0;
         this.achievements = new ArrayList<>();
@@ -84,12 +84,12 @@ public class Player {
         if (totalGames == 0) {
             return 0.0F;
         }
-        return (float) (victories / totalGames * 100);
+        return (float) (wins / totalGames * 100);
     }
 
     public Integer getTotalGames() {
-        return victories + defeats;
+        return wins + loses;
     }
 
-    /*Pongo esto a ver si me deja hacer push*/
+
 }
