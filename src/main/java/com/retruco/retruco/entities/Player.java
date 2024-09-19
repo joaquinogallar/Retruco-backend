@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,4 +49,45 @@ public class Player {
 
     @ManyToMany
     private List<Achievement> achievements;
+
+    public Player(String name, String surname, String email, String nickname, String password, String phone, String country, String province, String city) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.phone = phone;
+        this.country = country;
+        this.province = province;
+        this.city = city;
+        this.creationDate = LocalDate.now();
+        this.friends = new ArrayList<>();
+        this.balance = 0.0;
+        this.victories = 0;
+        this.defeats = 0;
+        this.streak = 0;
+        this.maxStreak = 0;
+        this.achievements = new ArrayList<>();
+        this.games = new ArrayList<>();
+    }
+
+    /**
+     * @author Joaquin Ogallar (joaquinnogallar@gmail.com)
+     * @version 1
+     *
+     * Calculate winrate % with wins and losses
+     *
+     * @return
+     */
+    public Float calculateWinrate() {
+        int totalGames = getTotalGames();
+        if (totalGames == 0) {
+            return 0.0F;
+        }
+        return (float) (victories / totalGames * 100);
+    }
+
+    public Integer getTotalGames() {
+        return victories + defeats;
+    }
 }
