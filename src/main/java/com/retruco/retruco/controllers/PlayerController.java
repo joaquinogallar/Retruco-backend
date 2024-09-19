@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/players")
+@CrossOrigin(origins = "http://localhost:5173") // necesario para permitirle al front consumier nuestros endpoints
 public class PlayerController {
 
     @Autowired
