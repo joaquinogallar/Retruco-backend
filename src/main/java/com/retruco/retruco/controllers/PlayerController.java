@@ -27,8 +27,10 @@ public class PlayerController {
     }
 
     @GetMapping("/{id}")
-    public Player getPlayerById(@PathVariable Long id) {
-        return playerRepository.findById(id).orElse(null);
+    public PlayerDTO getPlayerById(@PathVariable Long id) {
+        Player player = playerRepository.findById(id).orElse(null);
+        PlayerDTO playerDTO = new PlayerDTO(player);
+        return playerDTO;
     }
 
     @PostMapping
