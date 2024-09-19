@@ -1,5 +1,6 @@
 package com.retruco.retruco.controllers;
 
+import com.retruco.retruco.dtos.PlayerDTO;
 import com.retruco.retruco.entities.Player;
 import com.retruco.retruco.repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,13 @@ public class PlayerController {
     private PlayerRepository playerRepository;
 
     @GetMapping
-    public ResponseEntity<List<Player>> getAllPlayers() {
+    public ResponseEntity<List<PlayerDTO>> getAllPlayers() {
         List<Player> players = playerRepository.findAll();
-        return ResponseEntity.ok(players);
+        List<PlayerDTO> playerDTOs = players.stream()
+                .map(PlayerDTO::new)
+                .toList();
+        
+        return ResponseEntity.ok(playerDTOs);
     }
 
     @GetMapping("/{id}")
