@@ -2,10 +2,7 @@ package com.retruco.retruco.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +20,6 @@ public class Player {
     private String email;
     private String nickname;
 
-    @JsonIgnore
     @Getter(AccessLevel.NONE)
     private String password;
 
@@ -49,6 +45,18 @@ public class Player {
 
     @ManyToMany
     private List<Achievement> achievements;
+
+    public Player() {
+        this.creationDate = LocalDate.now();
+        this.friends = new ArrayList<>();
+        this.balance = 0.0;
+        this.wins = 0;
+        this.loses = 0;
+        this.streak = 0;
+        this.maxStreak = 0;
+        this.achievements = new ArrayList<>();
+        this.games = new ArrayList<>();
+    }
 
     public Player(String name, String surname, String email, String nickname, String password, String phone, String country, String province, String city) {
         this.name = name;
