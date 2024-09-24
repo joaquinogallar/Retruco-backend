@@ -15,6 +15,7 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String image;
     private String name;
     private String surname;
     private String email;
@@ -47,6 +48,7 @@ public class Player {
     private List<Achievement> achievements;
 
     public Player() {
+        this.image = "";
         this.creationDate = LocalDate.now();
         this.friends = new ArrayList<>();
         this.balance = 0.0;
@@ -68,6 +70,7 @@ public class Player {
         this.country = country;
         this.province = province;
         this.city = city;
+        this.image = "";
         this.creationDate = LocalDate.now();
         this.friends = new ArrayList<>();
         this.balance = 0.0;
