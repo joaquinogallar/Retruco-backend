@@ -50,4 +50,45 @@ public class PlayerService {
     public void deletePlayer(Long id) {
         playerRepository.deleteById(id);
     }
+
+    public void addFriend(Long userId, Long friendId) {
+        // verificar si el usuario está intentando agregarse a sí mismo como amigo
+        if (userId.equals(friendId)) {
+            throw new IllegalArgumentException("You cannot add yourself as a friend.");
+        }
+
+        // obtener los jugadores (usuario y amigo)
+        Player player = playerRepository.findById(userId)
+                .orElseThrow(() -> new PlayerNotFoundException(userId));
+        Player friend = playerRepository.findById(friendId)
+                .orElseThrow(() -> new PlayerNotFoundException(friendId));
+
+        // Verificar si ya son amigos
+        if (!player.getFriends().contains(friend)) {
+            player.getFriends().add(friend);
+            playerRepository.save(player);
+        }
+    }
+
+    public List<PlayerDTO> getAllFriends(Long userId) {
+        Player user = playerRepository.findById(userId)
+                .orElseThrow(() -> new PlayerNotFoundException(userId));
+
+        List<Player> friends = user.getFriends();
+
+        return friends.stream()
+                .map(PlayerDTO::new)
+                .toList();
+    }
+
+    public void removeFriend(Long userId, Long friendId) {
+        // obtener los jugadores (usuario y amigo)
+        Player player = playerRepository.findById(userId)
+                .orElseThrow(() -> new PlayerNotFoundException(userId));
+        Player friend = playerRepository.findById(friendId)
+                .orElseThrow(() -> new PlayerNotFoundException(friendId));
+
+        player.getFriends().remove(friend);
+    }
+
 }

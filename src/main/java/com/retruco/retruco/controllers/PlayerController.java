@@ -47,4 +47,22 @@ public class PlayerController {
         playerService.deletePlayer(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{userId}/friends/{friendId}")
+    public ResponseEntity<String> addFriend(@PathVariable Long userId, @PathVariable Long friendId) {
+        playerService.addFriend(userId, friendId);
+        return ResponseEntity.ok("Friend added successfully");
+    }
+
+    @GetMapping("/{userId}/friends")
+    public ResponseEntity<List<PlayerDTO>> getAllFriends(@PathVariable Long userId) {
+        List<PlayerDTO> friends = playerService.getAllFriends(userId);
+        return ResponseEntity.ok(friends);
+    }
+
+    @DeleteMapping("/{userId}/friends/{friendId}")
+    public ResponseEntity<Void> deleteFriend(@PathVariable Long userId, @PathVariable Long friendId) {
+        playerService.removeFriend(userId, friendId);
+        return ResponseEntity.noContent().build();
+    }
 }
