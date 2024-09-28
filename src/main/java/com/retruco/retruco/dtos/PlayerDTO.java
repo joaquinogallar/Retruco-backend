@@ -1,7 +1,7 @@
 package com.retruco.retruco.dtos;
 
 import com.retruco.retruco.entities.Achievement;
-import com.retruco.retruco.entities.Game;
+import com.retruco.retruco.entities.Games.Game;
 import com.retruco.retruco.entities.Player;
 import lombok.Getter;
 

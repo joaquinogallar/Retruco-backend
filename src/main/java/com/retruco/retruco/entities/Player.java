@@ -1,6 +1,6 @@
 package com.retruco.retruco.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.retruco.retruco.entities.Games.Game;
 import jakarta.persistence.*;
 import lombok.*;
 
