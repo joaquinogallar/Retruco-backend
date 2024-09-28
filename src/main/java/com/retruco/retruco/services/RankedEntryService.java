@@ -1,5 +1,6 @@
 package com.retruco.retruco.services;
 
+import com.retruco.retruco.entities.Player;
 import com.retruco.retruco.entities.RankedEntry;
 import com.retruco.retruco.repositories.RankedEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,5 +15,9 @@ public class RankedEntryService {
 
     public List<RankedEntry> getAllRankedEntries() {
         return rankedEntryRepository.findAll();
+    }
+
+    public RankedEntry createRankedEntry(RankedEntry rankedEntry) {
+        return rankedEntryRepository.save(rankedEntry);
     }
 }
