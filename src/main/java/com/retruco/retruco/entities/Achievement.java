@@ -10,4 +10,9 @@ public class Achievement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String achievementName;
+    private String achievementPhoto;
+    private String achievementDescription;
+    private String achievementProgress;
 }
